@@ -210,30 +210,45 @@ nmap <leader>e :shell<cr>
   * $  rails generate controller pages
   * $  vim app/controllers/pages_controller.rb
   ```
-  def about
-    @rails_ver = Rails.version
-    @ruby_ver = RUBY_VERSION
-    @env = Rails.env
-    @current_time = Time.current
+  require 'socket'
+  class PagesController < ApplicationController
+    def about
+      @rails_ver = Rails.version
+      @ruby_ver = RUBY_VERSION
+      @env = Rails.env
+      @hostname = Socket.gethostname
+      @ip_addr = Socket.ip_address_list.find { |ai| ai.ipv4? && !ai.ipv4_loopback? }.ip_address
+      @remote_ip= request.remote_ip
+      @current_time = Time.current
+    end
   end
   ```
   * $ vim app/views/pages/about.html.erb
   ```
   <Center>
-    <H1>Hello Rails!</H1>
-    <P/>
-    <H3>Ruby Version:</H3>
-    <%= @ruby_ver %>
-    <P/>
-    <H3>Rails Version:</H3>
-    <%= @rails_ver %>
-    <P/>
-    <H3>Environment:</H3>
-    <%= @env %>
-    <P/>
-    <H3>Time:</H3>
-    <%= @current_time %>
-    <P/>
+  <H1>Hello Rails!</H1>
+  <P/>
+  <H3>Ruby Version:</H3>
+  <%= @ruby_ver %>
+  <P/>
+  <H3>Rails Version:</H3>
+  <%= @rails_ver %>
+  <P/>
+  <H3>Environment:</H3>
+  <%= @env %>
+  <P/>
+  <H3>Host Name:</H3>
+  <%= @hostname %>
+  <P/>
+  <H3>Host IP:</H3>
+  <%= @ip_addr %>
+  <P/>
+  <H3>Remote IP:</H3>
+  <%= @remote_ip %>
+  <P/>
+  <H3>Time:</H3>
+  <%= @current_time %>
+  <P/>
   </Center>
   ```
   * $ vim config/routes.rb
