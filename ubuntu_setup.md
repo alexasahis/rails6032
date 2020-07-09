@@ -55,7 +55,7 @@
     - $ yarn --version
 
 ### Install Rails laest
-  * $ vi !/.gemrc
+  * $ vi ~/.gemrc
     ```
     gem: --no-ri --no-rdoc --no-document
     ```
