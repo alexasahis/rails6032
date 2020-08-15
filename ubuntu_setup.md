@@ -39,7 +39,8 @@
   * $ git config --global color.ui true
 
 ## Install RVM
-  * $ gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+  * $ command curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+  * $ command curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
   * $ \curl -sSL https://get.rvm.io | bash -s stable --auto-dotfiles
 
 ## Install Ruby
@@ -49,9 +50,13 @@
 ## Install Rails
 ### Install Yarn
   * https://yarnpkg.com/lang/en/docs/install/
+  * apt:
     - $ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
     - $ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     - $ sudo apt update && sudo apt install yarn
+  * installer:
+    - $ curl -o- -L https://yarnpkg.com/install.sh | bash
+  * check install:
     - $ yarn --version
 
 ### Install Rails laest
